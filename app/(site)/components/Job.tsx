@@ -6,7 +6,7 @@ export default async function Job() {
   const job: JobType[] = await getJob();
 
   const greeting = (data : any) => {
-    const name = data.name=='VL OMNI' ? 'Current' : data.name;
+    const name = data.name=='VL OMNI' ? 'Current' : data.endDate;
     return name;
   }
 
