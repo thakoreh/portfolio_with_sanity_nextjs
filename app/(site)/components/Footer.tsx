@@ -8,7 +8,7 @@ export default function Footer() {
 
         <small className="hover:text-white duration-200">
           <a
-            href="https://github.com/Evavic44/sanity-nextjs-site"
+            href="https://github.com/thakoreh/portfolio_with_sanity_nextjs"
             target="_blank"
             rel="noreferrer noopener"
           >
