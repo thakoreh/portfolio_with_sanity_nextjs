@@ -16,6 +16,7 @@ import SectionDivider from './components/SectionDivider';
 import FeaturedAchievement from './components/FeaturedAchievement';
 import BlogPosts from './components/BlogPosts';
 import ProblemSolving from './components/ProblemSolving';
+import DeveloperProfile from "./components/DeveloperProfile";
 
 export default async function Home() {
   const profile: ProfileType[] = await getProfile();
@@ -91,6 +92,8 @@ export default async function Home() {
         </section>
         <SectionDivider />
 
+        <DeveloperProfile />
+
         {/* Skills Section */}
         <section className="w-full bg-white py-20">
           <div className="max-w-7xl mx-auto px-6 lg:px-16">
@@ -110,10 +113,11 @@ export default async function Home() {
         {/* After Testimonials section */}
         <TechGlobe />
         <CodingStats />
-        <GitHubActivity />
+        
+        {/* <GitHubActivity /> */}
         <FeaturedAchievement />
         <ProblemSolving />
-        <BlogPosts />
+        {/* <BlogPosts /> */}
       </main>
     </div>
   );
