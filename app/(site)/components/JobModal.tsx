@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { BiX, BiCalendar, BiBuildings } from 'react-icons/bi';
+import Image from "next/image";
 
 type JobModalProps = {
   job: {
@@ -37,7 +38,13 @@ export default function JobModal({ job, onClose }: JobModalProps) {
 
         <div className="p-8">
           <div className="flex items-start gap-4 mb-6">
-            <img src={job.logo} alt={job.company} className="w-16 h-16 rounded-full" />
+            <Image 
+              src={job.logo} 
+              alt={job.company} 
+              width={64} 
+              height={64} 
+              className="rounded-full"
+            />
             <div>
               <h2 className="text-2xl font-bold text-gray-800">{job.title}</h2>
               <div className="flex items-center gap-2 text-gray-600 mt-1">

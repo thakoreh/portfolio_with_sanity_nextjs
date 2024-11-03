@@ -3,6 +3,7 @@
 import { BiCalendar } from "react-icons/bi";
 import { useState } from "react";
 import JobModal from "./JobModal";
+import Image from "next/image";
 
 const jobData = {
   eHouse: {
@@ -68,7 +69,7 @@ export default function Job() {
       <div className="mb-16">
         <h2 className="text-4xl font-bold text-gray-800 mb-4">Work Experience</h2>
         <p className="text-gray-600 max-w-lg">
-          Here's a brief rundown of my most recent experiences. Click on each card to learn more.
+          Here&apos;s a brief rundown of my most recent experiences. Click on each card to learn more.
         </p>
       </div>
 
@@ -84,10 +85,12 @@ export default function Job() {
                 <h3 className="text-xl font-bold text-gray-800">{job.title}</h3>
                 <p className="text-blue-600">{job.company}</p>
               </div>
-              <img 
+              <Image 
                 src={job.logo}
                 alt={job.company}
-                className="w-12 h-12 rounded-full"
+                width={48}
+                height={48}
+                className="rounded-full"
               />
             </div>
             <p className="text-gray-600 mb-4">
