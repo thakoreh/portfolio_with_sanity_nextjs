@@ -16,20 +16,31 @@ export default async function About() {
           <div key={data._id}>
             <section className="grid lg:grid-cols-2 grid-cols-1 gap-x-6 justify-items-center">
               <div className="order-2 lg:order-none">
-                <h1 className="lg:text-5xl text-4xl lg:leading-tight basis-1/2 font-bold mb-8">
+                <h1 className="lg:text-5xl text-4xl lg:leading-tight font-bold mb-8 text-gray-800">
                   I&apos;m {data.fullName}. I live in {data.location}, where I
                   design the future.
                 </h1>
 
-                <div className="flex flex-col gap-y-3 text-zinc-400 leading-relaxed">
+                <div className="flex flex-col gap-y-3 text-gray-600 leading-relaxed">
                   <PortableText value={data.fullBio} />
+                </div>
+
+                <div className="flex flex-wrap gap-4 mt-8">
+                  {data.skills.map((skill, id) => (
+                    <span
+                      key={id}
+                      className="px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm"
+                    >
+                      {skill}
+                    </span>
+                  ))}
                 </div>
               </div>
 
               <div className="flex flex-col lg:justify-self-center justify-self-start gap-y-8 lg:order-1 order-none mb-12">
-                <div>
+                <div className="bg-white rounded-xl shadow-lg p-4">
                   <Image
-                    className="rounded-2xl mb-4 object-cover max-h-96 min-h-96 bg-top bg-[#1d1d20]"
+                    className="rounded-xl mb-4 object-cover max-h-96 min-h-96 bg-top"
                     src={data.profileImage.image}
                     width={400}
                     height={400}
@@ -39,43 +50,57 @@ export default async function About() {
 
                   <a
                     href={`${data.resumeURL}?dl=${data.fullName}_resume`}
-                    className="flex items-center justify-center gap-x-2 bg-[#1d1d20] border border-transparent hover:border-zinc-700 rounded-md duration-200 py-2 text-center cursor-cell font-medium"
+                    className="flex items-center justify-center gap-x-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg duration-200 py-3 text-center cursor-pointer font-medium"
                   >
-                    <BiFile className="text-base" /> Download Resumé
+                    <BiFile className="text-xl" /> Download Resumé
                   </a>
                 </div>
 
-                <ul>
-                  <li>
-                    <a
-                      href={`mailto:${data.email}`}
-                      className="flex items-center gap-x-2 hover:text-purple-400 duration-300"
-                    >
-                      <BiEnvelope className="text-lg" />
-                      {data.email}
-                    </a>
-                  </li>
-                </ul>
+                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                  <h2 className="text-xl font-semibold text-gray-800 mb-4">Contact</h2>
+                  <ul className="space-y-4">
+                    <li>
+                      <a
+                        href={`mailto:${data.email}`}
+                        className="flex items-center gap-x-2 text-gray-600 hover:text-blue-600 duration-300"
+                      >
+                        <BiEnvelope className="text-xl" />
+                        {data.email}
+                      </a>
+                    </li>
+                    {Object.entries(data.socialLinks).map(([platform, url], index) => (
+                      <li key={index}>
+                        <a
+                          href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-x-2 text-gray-600 hover:text-blue-600 duration-300"
+                        >
+                          {platform}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </section>
 
             <section className="mt-24 max-w-2xl">
-              <h2 className="font-semibold text-4xl mb-4">Expertise</h2>
-              <p className="text-zinc-400 max-w-lg">
-                I&apos;ve spent few years working on my skills. In no particular
-                order, here are a few of them.
+              <h2 className="font-semibold text-3xl text-gray-800 mb-4">Expertise</h2>
+              <p className="text-gray-600 mb-8">
+                I&apos;ve spent several years working on my skills. Here are some of my key areas of expertise:
               </p>
 
-              <ul className="flex flex-wrap items-center gap-3 mt-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {data.skills.map((skill, id) => (
-                  <li
+                  <div
                     key={id}
-                    className="bg-[#1d1d20] border border-transparent hover:border-zinc-700 rounded-md px-2 py-1"
+                    className="bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-300 transition-colors"
                   >
                     {skill}
-                  </li>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </section>
           </div>
         ))}

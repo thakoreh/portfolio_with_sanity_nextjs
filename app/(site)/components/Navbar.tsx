@@ -4,17 +4,23 @@ import Logo from "../icons/logo.png";
 
 export default function Navbar() {
   return (
-    <header className="py-6 md:px-16 px-6 border-b border-zinc-800 z-30 md:mb-28 mb-20">
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 navbar-glass z-50">
+      <div className="max-w-6xl mx-auto flex items-center justify-between py-4 md:px-16 px-6">
         <Link href="/">
-          <Image src={Logo} width={25} height={25} alt="logo" />
+          <Image 
+            src={Logo} 
+            width={35} 
+            height={35} 
+            alt="logo" 
+            className="hover:opacity-80 transition-opacity hover:rotate-12 duration-300" 
+          />
         </Link>
         <nav>
           <ul className="flex items-center gap-x-8">
             <li>
               <Link
                 href="/about"
-                className="hover:text-purple-400 duration-300"
+                className="text-gray-600 hover:text-blue-600 transition-colors duration-300 hover:scale-105 inline-block"
               >
                 About
               </Link>
@@ -22,7 +28,7 @@ export default function Navbar() {
             <li>
               <Link
                 href="/projects"
-                className="hover:text-purple-400 duration-300"
+                className="text-gray-600 hover:text-blue-600 transition-colors duration-300 hover:scale-105 inline-block"
               >
                 Projects
               </Link>

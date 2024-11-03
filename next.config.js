@@ -1,16 +1,14 @@
-// next.config.ts
-
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-module.exports = {
+const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
-        port: "",
-      },
+    domains: [
+      'media.licdn.com',
+      'cdn.sanity.io'  // Keep this if you're using Sanity for other images
     ],
   },
-};
+  experimental: {
+    appDir: true,
+  }
+}
+
+module.exports = nextConfig

@@ -28,16 +28,17 @@ export type JobType = {
     endDate: Date;
   };
 
-export type ProjectType = {
-    _id: string;
-    name: string;
-    slug: string;
-    tagline: string;
-    projectUrl: string;
-    logo: string;
-    coverImage: {
-        alt: string | null;
-        image: string;
-    };
-    description: PortableTextBlock[];
-};
+export interface ProjectType {
+  _id: string;
+  _createdAt: Date;
+  name: string;
+  slug: string;
+  tagline: string;
+  projectUrl: string;
+  coverImage: {
+    image: string;
+    alt: string;
+  };
+  description: any;
+  technologies: string[];
+}
