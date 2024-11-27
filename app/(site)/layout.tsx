@@ -20,6 +20,12 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en">
+      <head>
+        <link 
+          rel="stylesheet" 
+          href="https://unpkg.com/bluesky-comments@0.3.0/dist/bluesky-comments.css" 
+        />
+      </head>
       <body className={`${inter.className} bg-white text-gray-800`}>
         <Navbar />
         <div className="main-wrapper">

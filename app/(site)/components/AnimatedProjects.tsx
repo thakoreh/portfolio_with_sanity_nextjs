@@ -116,7 +116,7 @@ export default function AnimatedProjects({ projects }: AnimatedProjectsProps) {
           <p className="text-gray-600">Client Satisfaction</p>
         </div>
         <div className="text-center">
-          <h3 className="text-4xl font-bold text-gray-800 mb-2">5+</h3>
+          <h3 className="text-4xl font-bold text-gray-800 mb-2">7+</h3>
           <p className="text-gray-600">Years Experience</p>
         </div>
       </motion.section>

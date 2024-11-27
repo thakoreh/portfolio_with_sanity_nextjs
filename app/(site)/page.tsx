@@ -17,6 +17,7 @@ import FeaturedAchievement from './components/FeaturedAchievement';
 import BlogPosts from './components/BlogPosts';
 import ProblemSolving from './components/ProblemSolving';
 import DeveloperProfile from "./components/DeveloperProfile";
+import BlueSkyComments from './components/BlueSkyComments';
 
 export default async function Home() {
   const profile: ProfileType[] = await getProfile();
@@ -118,6 +119,8 @@ export default async function Home() {
         <FeaturedAchievement />
         <ProblemSolving />
         {/* <BlogPosts /> */}
+        
+        <BlueSkyComments />
       </main>
     </div>
   );
