@@ -12,14 +12,14 @@ const technologies = [
 
 export default function FloatingTechStack() {
   return (
-    <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden xl:block">
+    <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden xl:block z-10">
       {technologies.map((tech, index) => (
         <motion.div
           key={tech.name}
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ 
-            duration: 0.5, 
+          transition={{
+            duration: 0.5,
             delay: tech.delay,
             repeat: Infinity,
             repeatType: "reverse",
@@ -27,9 +27,9 @@ export default function FloatingTechStack() {
           }}
           className="mb-4"
         >
-          <div 
-            className="px-4 py-2 rounded-lg text-white font-medium shadow-lg"
-            style={{ backgroundColor: tech.color }}
+          <div
+            className="px-4 py-2 rounded-lg text-white font-medium shadow-[0_0_15px_rgba(0,0,0,0.3)] backdrop-blur-md border border-white/10"
+            style={{ backgroundColor: `${tech.color}40`, borderColor: tech.color }} // 40 is hex for 25% opacity
           >
             {tech.name}
           </div>

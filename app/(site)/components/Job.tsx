@@ -6,6 +6,24 @@ import JobModal from "./JobModal";
 import Image from "next/image";
 
 const jobData = {
+  evertz: {
+    title: "Senior Software Development Engineer",
+    company: "Evertz Microsystems",
+    period: "June 2024 - Present",
+    logo: "https://ui-avatars.com/api/?name=Evertz&background=0D8ABC&color=fff",
+    description: [
+      "Architecting high-performance software solutions for media and broadcasting industries",
+      "Developing scalable backend infrastructure and real-time data processing systems",
+      "Collaborating with cross-functional teams to deliver enterprise-grade software",
+      "Optimizing system latency and ensuring high availability for critical broadcasting workflows"
+    ],
+    achievements: [
+      "Leading development of next-generation broadcasting control systems",
+      "Engineered robust microservices architecture for media management",
+      "Reduced system latency by optimizing critical data paths",
+      "Mentoring junior developers and driving code quality standards"
+    ]
+  },
   eHouse: {
     title: "Software Developer",
     company: "eHouse Studio",
@@ -65,11 +83,11 @@ export default function Job() {
   const [selectedJob, setSelectedJob] = useState<keyof typeof jobData | null>(null);
 
   return (
-    <section className="mt-32">
+    <section className="py-20 relative">
       <div className="mb-16">
-        <h2 className="text-4xl font-bold text-gray-800 mb-4">Work Experience</h2>
-        <p className="text-gray-600 max-w-lg">
-          Here&apos;s a brief rundown of my most recent experiences. Click on each card to learn more.
+        <h2 className="text-4xl font-bold text-white mb-4">Work Experience</h2>
+        <p className="text-gray-400 max-w-lg text-lg">
+          My professional journey across different companies and roles.
         </p>
       </div>
 
@@ -77,26 +95,28 @@ export default function Job() {
         {Object.entries(jobData).map(([key, job]) => (
           <div
             key={key}
-            className="card-gradient card-hover rounded-xl p-6 border border-gray-200/50 shadow-sm cursor-pointer"
+            className="glass-panel rounded-xl p-8 hover:-translate-y-1 transition-all duration-300 cursor-pointer group"
             onClick={() => setSelectedJob(key as keyof typeof jobData)}
           >
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-6">
               <div>
-                <h3 className="text-xl font-bold text-gray-800">{job.title}</h3>
-                <p className="text-blue-600">{job.company}</p>
+                <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">{job.title}</h3>
+                <p className="text-blue-400 font-medium">{job.company}</p>
               </div>
-              <Image 
-                src={job.logo}
-                alt={job.company}
-                width={48}
-                height={48}
-                className="rounded-full"
-              />
+              <div className="bg-white/10 p-2 rounded-lg">
+                <Image
+                  src={job.logo}
+                  alt={job.company}
+                  width={48}
+                  height={48}
+                  className="rounded-full"
+                />
+              </div>
             </div>
-            <p className="text-gray-600 mb-4">
+            <p className="text-gray-400 mb-6 leading-relaxed line-clamp-3">
               {job.description[0]}
             </p>
-            <div className="flex items-center text-gray-500 text-sm">
+            <div className="flex items-center text-gray-500 text-sm border-t border-white/5 pt-4">
               <BiCalendar className="mr-2" />
               <span>{job.period}</span>
             </div>

@@ -4,7 +4,8 @@ const nextConfig = {
     domains: [
       'media.licdn.com',
       'cdn.sanity.io',
-      'images.unsplash.com'
+      'images.unsplash.com',
+      'ui-avatars.com'
     ],
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',

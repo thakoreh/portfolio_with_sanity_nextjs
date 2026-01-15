@@ -26,22 +26,22 @@ export default function BlueSkyComments() {
   }, []);
 
   return (
-    <section className="w-full bg-gradient-to-b from-white to-gray-50 py-20">
+    <section className="w-full py-20 relative hidden md:block">
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-4xl font-bold text-white mb-4">
             Join the Conversation
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Connect with me on BlueSky where I share insights about software engineering, 
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Connect with me on BlueSky where I share insights about software engineering,
             tech humor, and development tips. Join our growing community of 13K+ followers!
           </p>
         </div>
 
         {/* BlueSky Comments Container */}
-        <div 
+        <div
           id="bluesky-comments"
-          className="bg-white rounded-xl shadow-sm p-8 border border-gray-200"
+          className="glass-panel rounded-xl shadow-lg p-8 border border-white/5"
         />
 
         {/* Load required scripts */}

@@ -2,227 +2,128 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Add smooth scrolling */
+@layer base {
+  :root {
+    --bg-primary: #0F172A; /* Deep Charcoal/Slate 900 */
+    --bg-secondary: #1E293B; /* Slate 800 */
+    --accent-blue: #3B82F6; /* Blue 500 */
+    --accent-glow: #60A5FA; /* Blue 400 */
+    --text-primary: #F1F5F9; /* Slate 100 */
+    --text-secondary: #94A3B8; /* Slate 400 */
+    --success: #10B981; /* Emerald 500 */
+    
+    --card-gradient-start: rgba(30, 41, 59, 0.7);
+    --card-gradient-end: rgba(15, 23, 42, 0.8);
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
 
-/* Modern gradient background */
 body {
-  background: linear-gradient(
-    to bottom right,
-    #ffffff,
-    #f8fafc,
-    #f1f5f9,
-    #f8fafc,
-    #ffffff
-  );
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  /* Deep space subtle grain or gradient can be added here if needed, 
+     but keeping it clean for now with just color */
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.05), transparent 25%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Gradient card backgrounds */
-.card-gradient {
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(249, 250, 251, 1) 100%
-  );
+/* Typography Overrides */
+h1, h2, h3, h4, h5, h6 {
+  @apply tracking-tight;
 }
 
-/* Glass morphism effect */
-.glass-card {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+/* Glassmorphism Classes */
+.glass-panel {
+  background: linear-gradient(135deg, var(--card-gradient-start) 0%, var(--card-gradient-end) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-/* Button hover effects */
-.btn-primary {
-  @apply relative overflow-hidden rounded-lg px-6 py-3 transition-all duration-300;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+.glass-panel:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
 }
 
-.btn-primary:hover {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+/* Text Gradients */
+.text-gradient-primary {
+  background: linear-gradient(135deg, #60A5FA 0%, #A78BFA 100%); /* Blue to Purple */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Image hover effects */
-.image-hover {
-  @apply transition-all duration-500;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.text-gradient-gold {
+  background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%); /* Amber */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.image-hover:hover {
-  transform: scale(1.05) rotate(-2deg);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+/* Custom Utilities */
+.glow-on-hover {
+  transition: all 0.3s ease;
 }
 
-/* Card hover effects */
-.card-hover {
-  @apply transition-all duration-300;
-  transform-style: preserve-3d;
-  perspective: 1000px;
+.glow-on-hover:hover {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
 }
 
-.card-hover:hover {
-  transform: translateY(-4px) rotateX(2deg);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+.architect-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
-/* Skill tag animation */
-.skill-tag {
-  @apply px-4 py-2 rounded-full text-sm transition-all duration-300;
-  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-  color: #2563eb;
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
-.skill-tag:hover {
-  background: linear-gradient(135deg, #bfdbfe 0%, #93c5fd 100%);
-  transform: scale(1.05);
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
-/* Section fade-in animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
-.fade-in-section {
-  animation: fadeIn 0.6s ease-out forwards;
+.animate-pulse-glow {
+  animation: pulse-glow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Subtle grid background */
-.grid-bg {
-  background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-/* Navbar glass effect */
-.navbar-glass {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.7);
-  height: 70px;
-}
-
-/* Add padding for fixed header */
-main {
-  padding-top: 80px;
-}
-
-/* Main content wrapper */
-.main-wrapper {
-  flex: 1 0 auto;
-  padding-top: 80px; /* Keep the header padding */
-}
-
-/* Footer styles */
-.footer {
-  flex-shrink: 0;
-  width: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(249, 250, 251, 0) 0%,
-    rgba(249, 250, 251, 1) 100%
-  );
-}
-
-/* Page transition animations */
-@keyframes pageEnter {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.page-enter {
-  animation: pageEnter 0.5s ease-out forwards;
-}
-
-/* Hover effect for links */
-.link-hover {
-  position: relative;
-}
-
-.link-hover::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -2px;
-  left: 0;
-  background-color: currentColor;
-  transition: width 0.3s ease;
-}
-
-.link-hover:hover::after {
-  width: 100%;
-}
-
-/* Improved card animations */
-.card-hover {
-  @apply transition-all duration-300;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-}
-
-.card-hover:hover {
-  transform: translateY(-4px) rotateX(2deg);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-}
-
-/* Smooth section transitions */
-section {
-  @apply relative overflow-hidden;
-}
-
-/* Enhanced card hover effects */
-.enhanced-card-hover {
-  @apply transition-all duration-300;
-  transform: translateY(0) scale(1);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-.enhanced-card-hover:hover {
-  transform: translateY(-5px) scale(1.01);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-}
-
-/* Gradient text effect */
-.gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600;
-}
-
-/* Enhanced scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--bg-primary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 5px;
+  background: var(--bg-secondary);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #334155;
 }
 
+/* Container Adjustments */
+.main-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}

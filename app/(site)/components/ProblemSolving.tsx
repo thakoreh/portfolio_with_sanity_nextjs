@@ -25,11 +25,11 @@ const problems = [
 
 export default function ProblemSolving() {
   return (
-    <section className="w-full bg-gray-50 py-20">
+    <section className="w-full py-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">Problem Solving</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-white mb-4">Problem Solving</h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
             Tackling complex technical challenges with innovative solutions
           </p>
         </div>
@@ -43,15 +43,15 @@ export default function ProblemSolving() {
               transition={{ delay: index * 0.1 }}
               className="relative group"
             >
-              <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl blur-xl -z-10"
+              <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-xl blur-xl -z-10"
                 style={{
                   background: `linear-gradient(to right, ${problem.color.split(' ')[1]}, ${problem.color.split(' ')[3]})`
                 }}
               />
-              <div className="bg-white rounded-xl p-8 shadow-sm group-hover:shadow-xl transition-all duration-300">
-                <span className="text-4xl mb-6 block">{problem.icon}</span>
-                <h3 className="text-xl font-semibold text-gray-800 mb-4">{problem.title}</h3>
-                <p className="text-gray-600">{problem.description}</p>
+              <div className="glass-panel rounded-xl p-8 shadow-sm group-hover:bg-white/5 transition-all duration-300 h-full">
+                <span className="text-4xl mb-6 block filter drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">{problem.icon}</span>
+                <h3 className="text-xl font-semibold text-white mb-4">{problem.title}</h3>
+                <p className="text-gray-400 leading-relaxed">{problem.description}</p>
               </div>
             </motion.div>
           ))}

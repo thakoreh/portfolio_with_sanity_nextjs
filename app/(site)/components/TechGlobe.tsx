@@ -9,7 +9,7 @@ export default function TechGlobe() {
   useEffect(() => {
     const container = containerRef.current;
     const texts = [
-      'JavaScript', 'React', 'Node.js', 
+      'JavaScript', 'React', 'Node.js',
       'Python', 'AWS', 'TypeScript',
       'Next.js', 'GraphQL', 'MongoDB',
       'Docker', 'CI/CD', 'REST API',
@@ -23,7 +23,7 @@ export default function TechGlobe() {
           radius: Math.min(500, window.innerWidth / 2),
           maxSpeed: 'fast',
           initSpeed: 'fast',
-          direction: 135,
+
           keep: true,
           useContainerInlineStyles: true,
           containerClass: 'tagcloud',
@@ -32,7 +32,7 @@ export default function TechGlobe() {
 
         // Clear any existing instances
         container.innerHTML = '';
-        
+
         // Create new instance
         const tagCloud = TagCloud(container, texts, options);
 
@@ -40,10 +40,10 @@ export default function TechGlobe() {
         const items = container.querySelectorAll('.tagcloud--item');
         items.forEach((item) => {
           item.addEventListener('mouseover', () => {
-            (item as HTMLElement).style.color = '#2563eb'; // blue-600
+            (item as HTMLElement).style.color = '#3b82f6'; // blue-500
           });
           item.addEventListener('mouseout', () => {
-            (item as HTMLElement).style.color = '#4B5563'; // gray-600
+            (item as HTMLElement).style.color = '#94a3b8'; // slate-400
           });
         });
 
@@ -60,23 +60,23 @@ export default function TechGlobe() {
   }, []);
 
   return (
-    <section className="w-full bg-gradient-to-b from-gray-50 to-white py-20">
-      <div className="max-w-7xl mx-auto px-6 lg:px-16">
+    <section className="w-full py-20 relative">
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-4xl font-bold text-white mb-4">
             My Tech Universe
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            An interactive visualization of the technologies I work with regularly. 
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            An interactive visualization of the technologies I work with regularly.
             Feel free to drag and explore!
           </p>
         </div>
-        
+
         <div className="flex justify-center items-center">
-          <div 
+          <div
             ref={containerRef}
             className="tagcloud-wrapper"
-            style={{ 
+            style={{
               minHeight: '500px',
               width: '100%',
               display: 'flex',
@@ -96,13 +96,15 @@ export default function TechGlobe() {
           font-size: 1.125rem;
         }
         :global(.tagcloud--item) {
-          color: #4B5563;
+          color: #94a3b8;
           padding: 2px 6px;
           transition: 0.3s;
           cursor: pointer;
+          text-shadow: 0 0 10px rgba(59, 130, 246, 0.1);
         }
         :global(.tagcloud--item:hover) {
-          color: #2563eb;
+          color: #3b82f6;
+          text-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
         }
       `}</style>
     </section>

@@ -13,20 +13,25 @@ export type ProfileType = {
   fullBio: PortableTextBlock[],
   location: string,
   resumeURL: string,
-  socialLinks: string[],
+  socialLinks: {
+    github: string,
+    linkedin: string,
+    twitter: string,
+    instagram: string
+  },
   skills: string[],
 };
 
 export type JobType = {
-    _id: string;
-    name: string;
-    jobTitle: string;
-    logo: string;
-    url: string;
-    description: string;
-    startDate: Date;
-    endDate: Date;
-  };
+  _id: string;
+  name: string;
+  jobTitle: string;
+  logo: string;
+  url: string;
+  description: string;
+  startDate: Date;
+  endDate: Date;
+};
 
 export interface ProjectType {
   _id: string;
