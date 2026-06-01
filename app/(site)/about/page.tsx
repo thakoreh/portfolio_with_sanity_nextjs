@@ -1,188 +1,135 @@
-// app/about/page.tsx
-
 import Image from "next/image";
+import { ArrowUpRight, Code2, Link2, MapPin } from "lucide-react";
 import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
-import { PortableText } from "@portabletext/react";
-import { BiEnvelope, BiFile, BiLogoGithub, BiLogoLinkedin } from "react-icons/bi";
-import ScrollAnimation from "../components/ScrollAnimation";
-import SectionDivider from "../components/SectionDivider";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { activityStats, currentFocus, experience, stack } from "@/data/portfolio";
+import MotionReveal from "../components/MotionReveal";
 
 export default async function About() {
-  const profile: ProfileType[] = await getProfile();
+  const profiles: ProfileType[] = await getProfile();
+  const profile = profiles?.[0];
 
   return (
-    <main className="min-h-screen bg-[#0F172A] text-white pt-24 pb-16">
-      <div className="lg:max-w-7xl mx-auto max-w-3xl md:px-16 px-6">
-        {profile &&
-          profile.map((data) => (
-            <div key={data._id}>
-              <section className="grid lg:grid-cols-2 grid-cols-1 gap-x-12 justify-items-center">
-                <ScrollAnimation>
-                  <div className="order-2 lg:order-none w-full">
-                    {/* Latest Role (Manual Update) */}
-                    <div className="mb-12">
-                      <h2 className="text-2xl font-bold text-white mb-6">Current Mission</h2>
-                      <div className="glass-panel p-8 rounded-xl border border-blue-500/20 shadow-[0_0_30px_rgba(37,99,235,0.15)] relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 p-3 bg-blue-600/20 rounded-bl-xl border-b border-l border-blue-500/30 text-blue-300 font-mono text-xs">
-                          ACTIVE
-                        </div>
-                        <div className="flex items-center gap-4 mb-4">
-                          <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center border border-white/10">
-                            <span className="font-bold text-blue-400">EM</span>
-                          </div>
-                          <div>
-                            <h3 className="font-bold text-xl text-white">Senior Software Development Engineer</h3>
-                            <p className="text-blue-400">Evertz Microsystems</p>
-                          </div>
-                        </div>
-                        <p className="text-gray-300 leading-relaxed mb-4">
-                          Architecting high-performance software solutions for media and broadcasting industries.
-                          Focusing on scalable backend infrastructure, real-time data processing, and optimizing system latency for critical broadcasting workflows.
-                        </p>
-                        <div className="flex items-center gap-2 text-sm text-gray-500 font-mono">
-                          <span>June 2024 - Present</span>
-                          <span className="w-1 h-1 bg-gray-500 rounded-full"></span>
-                          <span>Burlington, ON</span>
-                        </div>
+    <main className="min-h-[100dvh] bg-[#08090a] px-6 pb-24 pt-32 text-zinc-100 md:px-10 lg:px-16">
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+        <MotionReveal>
+          <aside className="sticky top-28 space-y-6 self-start">
+            <Card className="overflow-hidden rounded-[2rem] bg-[#0f1011]">
+              <div className="relative aspect-[4/4.6] bg-zinc-950">
+                {profile?.profileImage?.image ? (
+                  <Image
+                    src={profile.profileImage.image}
+                    alt={profile.profileImage.alt || profile.fullName}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 420px"
+                    className="object-cover"
+                    priority
+                  />
+                ) : null}
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#08090a] via-[#08090a]/70 to-transparent p-6">
+                  <Badge variant="accent">LinkedIn profile</Badge>
+                  <h1 className="mt-4 text-4xl font-semibold tracking-[-0.06em] text-zinc-50">
+                    {profile?.fullName || "Hiren Thakore"}
+                  </h1>
+                  <p className="mt-2 flex items-center gap-2 text-sm text-zinc-400">
+                    <MapPin className="h-4 w-4" /> {profile?.location || "Hamilton, Ontario"}
+                  </p>
+                </div>
+              </div>
+              <CardContent className="space-y-3 p-6">
+                <Button asChild className="w-full justify-between" variant="secondary">
+                  <a href={profile?.socialLinks?.linkedin || "https://www.linkedin.com/in/hirenthakore/"} target="_blank" rel="noreferrer noopener">
+                    LinkedIn <Link2 className="h-4 w-4" />
+                  </a>
+                </Button>
+                <Button asChild className="w-full justify-between" variant="secondary">
+                  <a href={profile?.socialLinks?.github || "https://github.com/thakoreh"} target="_blank" rel="noreferrer noopener">
+                    GitHub <Code2 className="h-4 w-4" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+          </aside>
+        </MotionReveal>
+
+        <div className="space-y-16">
+          <MotionReveal>
+            <section className="space-y-6">
+              <Badge variant="accent">About</Badge>
+              <h2 className="max-w-4xl text-5xl font-semibold leading-[0.98] tracking-[-0.07em] text-zinc-50 md:text-6xl">
+                Senior software engineer building an AI product portfolio.
+              </h2>
+              <p className="max-w-3xl text-lg leading-8 text-zinc-400">
+                I combine professional backend, cloud, and integration experience with a current focus on AI products, developer tooling, trust QA, and automation-led micro-SaaS systems. The throughline is practical software that makes technical teams faster, safer, or more informed.
+              </p>
+            </section>
+          </MotionReveal>
+
+          <section className="grid gap-4 md:grid-cols-2">
+            {currentFocus.map((focus, index) => (
+              <MotionReveal key={focus} delay={index * 0.05}>
+                <Card className="h-full">
+                  <CardContent className="p-6">
+                    <p className="font-mono text-xs uppercase tracking-[0.16em] text-cyan-200">Focus {String(index + 1).padStart(2, "0")}</p>
+                    <p className="mt-4 text-xl font-semibold tracking-[-0.04em] text-zinc-50">{focus}</p>
+                  </CardContent>
+                </Card>
+              </MotionReveal>
+            ))}
+          </section>
+
+          <section className="space-y-4">
+            <MotionReveal>
+              <div>
+                <Badge variant="accent">Experience</Badge>
+                <h2 className="mt-5 text-4xl font-semibold tracking-[-0.06em] text-zinc-50">Engineering background</h2>
+              </div>
+            </MotionReveal>
+            {experience.map((job, index) => (
+              <MotionReveal key={job.company} delay={index * 0.05}>
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                      <div>
+                        <p className="text-sm text-cyan-200">{job.company}</p>
+                        <h3 className="mt-1 text-2xl font-semibold tracking-[-0.04em] text-zinc-50">{job.role}</h3>
                       </div>
+                      <span className="font-mono text-xs text-zinc-500">{job.timeline}</span>
                     </div>
+                    <p className="mt-4 text-sm leading-7 text-zinc-400">{job.description}</p>
+                  </CardContent>
+                </Card>
+              </MotionReveal>
+            ))}
+          </section>
 
-                    {/* Bio Section (Manual Update) */}
-                    <div className="mb-12">
-                      <h2 className="text-4xl font-bold mb-6 text-white inline-block border-b-2 border-emerald-500 pb-2">About The Architect</h2>
-                      <div className="glass-panel p-8 rounded-2xl border border-white/5 shadow-2xl">
-                        <div className="text-gray-300 leading-relaxed font-light space-y-6 text-lg">
-                          <p>
-                            I am a <strong className="text-white">Senior Software Development Engineer</strong> and Cloud Architect with a passion for building scalable, high-performance systems. My journey is defined by a relentless pursuit of engineering excellence—transforming complex requirements into robust, &ldquo;Deep Space&rdquo; reliable infrastructure.
-                          </p>
-                          <p>
-                            Currently at <strong className="text-blue-400">Evertz Microsystems</strong>, I architect next-generation media workflow solutions, optimizing critical data paths for broadcasting giants. Previously, I engineered heavy-lifting backend strategies at <strong className="text-blue-400">VL OMNI</strong> that processed millions in revenue and streamlined operations for global e-commerce brands.
-                          </p>
-                          <p>
-                            Beyond code, I am an advocate for <strong>Agentic AI</strong> and open-source contribution. Whether it&apos;s building LLM-friendly crawlers or visualizing complex ASTs, I build tools that empower other developers. I thrive in environments where performance, scalability, and clean architecture are paramount.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+          <section className="grid gap-4 md:grid-cols-4">
+            {activityStats.map((stat) => (
+              <Card key={stat.label}>
+                <CardContent className="p-5">
+                  <p className="font-mono text-xs uppercase tracking-[0.16em] text-zinc-500">{stat.label}</p>
+                  <p className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-zinc-50">{stat.value}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </section>
 
-                    {/* Education Section */}
-                    <div className="mb-12">
-                      <h2 className="text-2xl font-bold text-white mb-6">Education & Foundation</h2>
-                      <div className="space-y-4">
-                        <div className="glass-panel p-6 rounded-xl border border-white/10 hover:border-blue-500/30 transition-all group">
-                          <h3 className="font-semibold text-xl text-white group-hover:text-blue-400 transition-colors">MSC in Electrical-Computer Engineering</h3>
-                          <p className="text-emerald-400 font-mono text-sm mt-1">University of Windsor</p>
-                          <p className="text-sm text-gray-500 mt-2">2017 - 2018</p>
-                        </div>
-                        <div className="glass-panel p-6 rounded-xl border border-white/10 hover:border-blue-500/30 transition-all group">
-                          <h3 className="font-semibold text-xl text-white group-hover:text-blue-400 transition-colors">Bachelor&apos;s in Computer Science & Engineering</h3>
-                          <p className="text-emerald-400 font-mono text-sm mt-1">Gujarat Technological University</p>
-                          <p className="text-sm text-gray-500 mt-2">2012 - 2016</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Skills Section (Manual Update) */}
-                    <div>
-                      <h2 className="text-2xl font-bold text-white mb-6">arsenal.tech_stack</h2>
-                      <div className="flex flex-wrap gap-3">
-                        {[
-                          "TypeScript", "Next.js", "React", "Node.js", "Python", "GraphQL",
-                          "AWS Lambda", "DynamoDB", "Docker", "Kubernetes", "Tailwind CSS",
-                          "System Architecture", "OpenAI API", "CI/CD"
-                        ].map((skill, id) => (
-                          <span
-                            key={id}
-                            className="px-4 py-2 bg-blue-900/20 border border-blue-500/20 text-blue-300 rounded-full text-sm hover:bg-blue-600 hover:text-white transition-all duration-300 cursor-default"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </ScrollAnimation>
-
-                <ScrollAnimation>
-                  <div className="flex flex-col lg:justify-self-center justify-self-start gap-y-8 lg:order-1 order-none mb-12 w-full max-w-md">
-                    {/* Profile Card */}
-                    <div className="glass-panel rounded-2xl shadow-2xl p-6 border border-white/10 relative overflow-hidden group">
-                      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-emerald-500"></div>
-                      <div className="relative mb-8 rounded-xl overflow-hidden shadow-inner border border-white/5">
-                        <Image
-                          className="object-cover w-full h-[400px] transform group-hover:scale-105 transition-transform duration-700"
-                          src={data.profileImage.image}
-                          width={400}
-                          height={400}
-                          quality={100}
-                          alt={data.profileImage.alt}
-                          priority
-                        />
-                        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                          <p className="text-white text-center font-bold text-lg">{data.fullName}</p>
-                          <p className="text-blue-400 text-center text-sm">Senior Software Engineer & Architect</p>
-                        </div>
-                      </div>
-
-                      {/* Actions */}
-                      <div className="flex justify-center mb-8">
-                        <a
-                          href={`${data.resumeURL}?dl=${data.fullName}_resume`}
-                          className="flex items-center justify-center gap-x-2 bg-white text-slate-900 hover:bg-blue-500 hover:text-white rounded-full px-8 py-3 text-sm font-bold shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(37,99,235,0.4)] transition-all duration-300"
-                        >
-                          <BiFile className="text-xl" /> Download Blueprint
-                        </a>
-                      </div>
-
-                      {/* Contact Info */}
-                      <div className="space-y-6 border-t border-white/10 pt-6">
-                        <div>
-                          <h3 className="text-sm uppercase tracking-widest text-gray-500 mb-2">Base Of Operations</h3>
-                          <p className="text-gray-300 flex items-center gap-2"><span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span> {data.location}</p>
-                        </div>
-
-                        <div>
-                          <h3 className="text-sm uppercase tracking-widest text-gray-500 mb-2">Communication Channels</h3>
-                          <div className="space-y-4">
-                            <a
-                              href={`mailto:${data.email}`}
-                              className="flex items-center gap-x-3 text-gray-300 hover:text-blue-400 duration-300 group/link"
-                            >
-                              <div className="p-2 bg-white/5 rounded-lg group-hover/link:bg-blue-500/20 transition-colors">
-                                <BiEnvelope className="text-xl" />
-                              </div>
-                              {data.email}
-                            </a>
-                            <div className="flex gap-4 pt-2">
-                              <a
-                                href={data.socialLinks.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="p-3 bg-white/5 rounded-xl text-gray-400 hover:text-white hover:bg-black transition-all duration-300"
-                              >
-                                <BiLogoGithub className="text-2xl" />
-                              </a>
-                              <a
-                                href={data.socialLinks.linkedin}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="p-3 bg-white/5 rounded-xl text-gray-400 hover:text-white hover:bg-[#0077b5] transition-all duration-300"
-                              >
-                                <BiLogoLinkedin className="text-2xl" />
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </ScrollAnimation>
-              </section>
-            </div>
-          ))}
+          <section>
+            <Card className="rounded-[2rem] bg-[#0f1011]">
+              <CardContent className="p-7">
+                <div className="flex flex-wrap gap-3">
+                  {stack.map((item) => (
+                    <Badge key={item} className="px-4 py-2 text-sm">{item}</Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+        </div>
       </div>
     </main>
   );
 }
-
