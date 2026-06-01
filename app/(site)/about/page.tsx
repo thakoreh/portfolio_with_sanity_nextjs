@@ -54,13 +54,13 @@ export default async function About() {
                       <div className="glass-panel p-8 rounded-2xl border border-white/5 shadow-2xl">
                         <div className="text-gray-300 leading-relaxed font-light space-y-6 text-lg">
                           <p>
-                            I am a <strong className="text-white">Senior Software Development Engineer</strong> and Cloud Architect with a passion for building scalable, high-performance systems. My journey is defined by a relentless pursuit of engineering excellence—transforming complex requirements into robust, "Deep Space" reliable infrastructure.
+                            I am a <strong className="text-white">Senior Software Development Engineer</strong> and Cloud Architect with a passion for building scalable, high-performance systems. My journey is defined by a relentless pursuit of engineering excellence—transforming complex requirements into robust, &ldquo;Deep Space&rdquo; reliable infrastructure.
                           </p>
                           <p>
                             Currently at <strong className="text-blue-400">Evertz Microsystems</strong>, I architect next-generation media workflow solutions, optimizing critical data paths for broadcasting giants. Previously, I engineered heavy-lifting backend strategies at <strong className="text-blue-400">VL OMNI</strong> that processed millions in revenue and streamlined operations for global e-commerce brands.
                           </p>
                           <p>
-                            Beyond code, I am an advocate for <strong>Agentic AI</strong> and open-source contribution. Whether it's building LLM-friendly crawlers or visualizing complex ASTs, I build tools that empower other developers. I thrive in environments where performance, scalability, and clean architecture are paramount.
+                            Beyond code, I am an advocate for <strong>Agentic AI</strong> and open-source contribution. Whether it&apos;s building LLM-friendly crawlers or visualizing complex ASTs, I build tools that empower other developers. I thrive in environments where performance, scalability, and clean architecture are paramount.
                           </p>
                         </div>
                       </div>

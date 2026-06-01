@@ -10,6 +10,7 @@ import BackToTop from "./components/BackToTop";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://portfolio-with-sanity-nextjs.vercel.app"),
   title: "Hiren Thakore - Software Engineer",
   description: "Experienced Software Engineer implementing effective cloud solutions",
   openGraph: {

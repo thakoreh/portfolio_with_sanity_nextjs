@@ -50,7 +50,7 @@ export default function Testimonials() {
                 <div className="max-w-3xl mx-auto bg-white rounded-2xl p-8 shadow-lg">
                   <div className="flex flex-col items-center text-center">
                     <blockquote className="text-xl text-gray-600 italic mb-8">
-                      "{testimonial.content}"
+                      &ldquo;{testimonial.content}&rdquo;
                     </blockquote>
                     <div className="flex items-center gap-4">
                       <Image

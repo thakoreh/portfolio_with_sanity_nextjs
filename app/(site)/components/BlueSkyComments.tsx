@@ -47,15 +47,15 @@ export default function BlueSkyComments() {
         {/* Load required scripts */}
         <Script
           src="https://unpkg.com/react@18/umd/react.production.min.js"
-          strategy="beforeInteractive"
+          strategy="afterInteractive"
         />
         <Script
           src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
-          strategy="beforeInteractive"
+          strategy="afterInteractive"
         />
         <Script
           src="https://unpkg.com/bluesky-comments@0.3.0/dist/bluesky-comments.umd.js"
-          strategy="beforeInteractive"
+          strategy="afterInteractive"
         />
       </div>
     </section>

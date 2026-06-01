@@ -21,9 +21,6 @@ const nextConfig = {
     // your project has type errors.
     ignoreBuildErrors: true,
   },
-  experimental: {
-    appDir: true,
-  }
 }
 
 module.exports = nextConfig
