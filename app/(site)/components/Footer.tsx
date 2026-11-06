@@ -62,13 +62,6 @@ export default function Footer({ profile }: { profile: PortfolioProfile }) {
           <a href={profile.resume} target="_blank" rel="noreferrer">
             Download résumé <ArrowUpRight size={13} />
           </a>
-          <a
-            href="https://github.com/thakoreh/portfolio_with_sanity_nextjs"
-            target="_blank"
-            rel="noreferrer"
-          >
-            View source <ArrowUpRight size={13} />
-          </a>
         </div>
       </div>
       <div className="footer-bottom container">

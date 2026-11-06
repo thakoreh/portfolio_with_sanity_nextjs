@@ -42,7 +42,7 @@ export default function LocationGlobe() {
             baseColor: [0.46, 0.44, 0.52],
             markerColor: [0.76, 0.58, 1],
             glowColor: [0.1, 0.085, 0.14],
-            markers: [{ location: [43.2557, -79.8711], size: 0.055 }],
+            markers: [{ location: [43.2, -80.4], size: 0.055 }],
             onRender: (state) => {
               state.width = width * pixelRatio;
               state.height = width * pixelRatio;
@@ -69,7 +69,7 @@ export default function LocationGlobe() {
     <div
       className="location-globe"
       role="img"
-      aria-label="A globe with a marker for Hamilton, Ontario"
+      aria-label="A globe with a marker for Ontario, Canada"
     >
       {!ready && (
         <Image

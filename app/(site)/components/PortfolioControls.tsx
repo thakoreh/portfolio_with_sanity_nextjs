@@ -17,9 +17,11 @@ import type { PortfolioProfile } from "@/lib/profile";
 export function CopyEmail({
   email,
   compact = false,
+  responsive = false,
 }: {
   email: string;
   compact?: boolean;
+  responsive?: boolean;
 }) {
   const [copied, setCopied] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -45,7 +47,20 @@ export function CopyEmail({
         aria-label={`Copy email address ${email}`}
       >
         {copied ? <Check size={17} /> : <Copy size={17} />}
-        <span>{copied ? "Email copied!" : compact ? "Copy email" : email}</span>
+        {responsive ? (
+          <>
+            <span className="copy-label-full">
+              {copied ? "Email copied!" : email}
+            </span>
+            <span className="copy-label-short">
+              {copied ? "Copied!" : "Copy email"}
+            </span>
+          </>
+        ) : (
+          <span>
+            {copied ? "Email copied!" : compact ? "Copy email" : email}
+          </span>
+        )}
       </button>
       <span className="sr-only" role="status">
         {copied ? "Email address copied to clipboard" : ""}
@@ -76,6 +91,7 @@ export function ContactButton({
 }
 export function SiteUtilities({ profile }: { profile: PortfolioProfile }) {
   const [light, setLight] = useState(false);
+  const [greeting, setGreeting] = useState("Welcome");
   const [search, setSearch] = useState("");
   const contactRef = useRef<HTMLDialogElement>(null);
   const searchRef = useRef<HTMLDialogElement>(null);
@@ -96,6 +112,14 @@ export function SiteUtilities({ profile }: { profile: PortfolioProfile }) {
       event.currentTarget.close();
   }
   useEffect(() => {
+    const hour = new Date().getHours();
+    setGreeting(
+      hour < 12
+        ? "Good morning"
+        : hour < 18
+          ? "Good afternoon"
+          : "Good evening",
+    );
     const stored = localStorage.getItem("portfolio-theme") === "light";
     setLight(stored);
     document.documentElement.dataset.theme = stored ? "light" : "dark";
@@ -147,7 +171,10 @@ export function SiteUtilities({ profile }: { profile: PortfolioProfile }) {
           aria-label="Search pages"
         >
           <Search size={13} />
-          <span>Explore</span>
+          <span className="command-label">Explore</span>
+          <span className="command-mobile-greeting">
+            Hello 👋, <span>{greeting}</span>
+          </span>
           <kbd>⌘ K</kbd>
         </button>
         <button

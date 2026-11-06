@@ -14,11 +14,11 @@ export const loadProfile = cache(async () => {
   return {
     fullName: profile.fullName || "Hiren Thakore",
     email: profile.email || "hiren.thakore58@gmail.com",
-    location: profile.location || "Hamilton, Ontario",
+    // Public city from the latest résumé; do not expose the street address.
+    location: "Paris, Ontario",
     image: profile.profileImage?.image || "/images/hiren-portrait.jpg",
-    resume:
-      profile.resumeURL ||
-      "https://cdn.sanity.io/files/rqj6hx4f/production/dd7c9fa557688d6e91d5089dc086ec4dd691aa0b.pdf",
+    // Keep every download on the explicitly supplied, version-controlled résumé.
+    resume: "/hiren-thakore-resume.pdf",
     github: profile.socialLinks?.github || "https://github.com/thakoreh",
     linkedin:
       profile.socialLinks?.linkedin ||

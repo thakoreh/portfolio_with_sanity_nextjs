@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <title>Hiren Thakore</title>
+  <rect x="4" y="4" width="120" height="120" rx="30" fill="#0c0b10" stroke="#9b88ef" stroke-width="6"/>
+  <g fill="#f5f3fa">
+    <path d="M27 35h10v24h18V35h10v58H55V69H37v24H27z"/>
+    <path d="M70 35h36v10H93v48H83V45H70z"/>
+  </g>
+</svg>
