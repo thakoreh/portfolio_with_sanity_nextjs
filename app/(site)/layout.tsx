@@ -1,6 +1,12 @@
 import "../globals.css";
 import type { Metadata } from "next";
-import { Alata, EB_Garamond } from "next/font/google";
+import {
+  Alata,
+  EB_Garamond,
+  Source_Code_Pro,
+  Shadows_Into_Light,
+  Henny_Penny,
+} from "next/font/google";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { loadProfile } from "@/lib/profile";
@@ -14,8 +20,35 @@ const garamond = EB_Garamond({
   subsets: ["latin"],
   variable: "--font-editorial",
 });
+const sourceCode = Source_Code_Pro({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
+const handwriting = Shadows_Into_Light({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-handwriting",
+});
+const henny = Henny_Penny({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-henny",
+});
 export const metadata: Metadata = {
   metadataBase: new URL("https://hirenthakore.com"),
+  applicationName: "Hiren Thakore",
+  icons: {
+    icon: [
+      { url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
+      { url: "/favicon.svg", type: "image/svg+xml", sizes: "any" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: {
+      url: "/apple-touch-icon.png",
+      sizes: "180x180",
+      type: "image/png",
+    },
+  },
   title: {
     default: "Hiren Thakore — Software Engineer & AI Product Builder",
     template: "%s | Hiren Thakore",
@@ -36,7 +69,9 @@ export default async function RootLayout({
   const profile = await loadProfile();
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${alata.variable} ${garamond.variable}`}>
+      <body
+        className={`${alata.variable} ${garamond.variable} ${sourceCode.variable} ${handwriting.variable} ${henny.variable}`}
+      >
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>

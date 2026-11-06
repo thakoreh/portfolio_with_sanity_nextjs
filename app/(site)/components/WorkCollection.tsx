@@ -1,69 +1,35 @@
 import { FaGithub as Github } from "react-icons/fa";
 import Image from "next/image";
-import { ArrowUpRight, Terminal } from "lucide-react";
+import { ArrowUpRight, CircleCheck } from "lucide-react";
 import { selectedWork } from "@/data/selected-work";
+import TechIcon from "./TechIcon";
 export default function WorkCollection() {
   return (
     <div className="work-list">
-      {selectedWork.map((project, i) => (
+      {selectedWork.map((project, index) => (
         <article className="work-card" key={project.name}>
           <a
-            className={`work-preview preview-${i}`}
+            className={`work-preview project-${project.kind}`}
             href={project.href}
             target="_blank"
             rel="noreferrer"
             aria-label={`Explore ${project.name}`}
           >
-            {project.name === "LLM Speedtest" ? (
-              <>
-                <Image
-                  src={project.image}
-                  alt={project.alt}
-                  fill
-                  sizes="(max-width: 800px) 90vw, 550px"
-                  className="concept-art"
-                />
-                <span className="concept-caption">LLM SPEEDTEST / MCP</span>
-              </>
-            ) : project.image ? (
-              <div className="browser-preview">
-                <div className="browser-chrome">
-                  <i />
-                  <i />
-                  <i />
-                  <span>{new URL(project.href).hostname}</span>
-                </div>
-                <div className="preview-image">
-                  <Image
-                    src={project.image}
-                    alt={project.alt}
-                    fill
-                    sizes="(max-width: 800px) 90vw, 550px"
-                    className="object-contain object-top"
-                  />
-                </div>
-              </div>
-            ) : (
-              <div className="code-window">
-                <div className="terminal-heading">
-                  <Terminal size={16} />
-                  <span>agent-tally</span>
-                  <span className="terminal-label">OPEN SOURCE</span>
-                </div>
-                <div className="terminal-body">
-                  <p>
-                    <span className="terminal-prompt">~</span> pip install
-                    agent-tally
-                  </p>
-                  <p className="terminal-muted">Know what your agents cost.</p>
-                  <p className="terminal-command">$ agent-tally --help</p>
-                  <p>
-                    Track usage. Surface gaps.
-                    <br />
-                    Understand the bill.
-                  </p>
-                  <span className="terminal-cursor" />
-                </div>
+            <Image
+              src={project.image}
+              alt={project.alt}
+              fill
+              sizes="(max-width:800px) 92vw, 620px"
+              className={
+                project.kind === "screen"
+                  ? "project-screen-image"
+                  : "project-cover-image"
+              }
+            />
+            {project.kind === "artwork" && (
+              <div className="cover-caption">
+                <span>{project.category}</span>
+                <strong>{project.name}</strong>
               </div>
             )}
             <span className="preview-open">
@@ -72,18 +38,30 @@ export default function WorkCollection() {
           </a>
           <div className="work-description">
             <span className="eyebrow">
-              <span className="work-number">0{i + 1}</span> {project.category}
+              <span className="work-number">0{index + 1}</span>
+              {project.category}
             </span>
             <h3>
               <a href={project.href} target="_blank" rel="noreferrer">
                 {project.name}
-                <ArrowUpRight size={24} />
+                <ArrowUpRight size={20} />
               </a>
             </h3>
             <p>{project.description}</p>
+            <ul className="project-feature-list">
+              {project.features.map((feature) => (
+                <li key={feature}>
+                  <CircleCheck size={15} />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
             <div className="work-tags">
               {project.tags.map((tag) => (
-                <span key={tag}>{tag}</span>
+                <span key={tag}>
+                  <TechIcon name={tag} size={14} />
+                  {tag}
+                </span>
               ))}
             </div>
             <a
@@ -92,8 +70,8 @@ export default function WorkCollection() {
               target="_blank"
               rel="noreferrer"
             >
-              {project.source ? <Github size={15} /> : null}{" "}
-              {project.source ? "Explore the code" : "Visit the website"}{" "}
+              {project.source ? <Github size={15} /> : null}
+              {project.source ? "Explore the code" : "Visit the website"}
               <ArrowUpRight size={13} />
             </a>
           </div>
