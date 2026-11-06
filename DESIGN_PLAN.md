@@ -24,7 +24,8 @@ Contact and search use native modal dialogs with keyboard focus management, Esca
 
 - Hiren’s portrait: existing public Sanity profile image, downloaded for a stable local fallback.
 - ARA Calls previews: actual public homepage captured at desktop 1440×900 and phone 390×844. The responsive showcase switches between both captures.
-- LLM Speedtest and agent-tally artwork: original ChatGPT image-generated conceptual instruments, presented as artwork rather than product screenshots or measured results.
+- LLM Speedtest artwork: an original ChatGPT image-generated conceptual instrument, presented as artwork rather than a product screenshot or measured results.
+- agent-tally preview: the original terminal-style illustration restored at the user’s preference. It uses real installation/help commands and does not display fabricated usage results.
 - Globe fallback: [Earth photograph from Unsplash](https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4).
 
 ## Verification
