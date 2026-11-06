@@ -1,49 +1,32 @@
-# Portfolio Design Strategy: "The Architect's Canvas"
+# Portfolio direction
 
-## Objective
-To position Hiren Thakore not just as a "coder" but as a **Senior Software Engineer & Cloud Architect** who delivers high-impact ($1M+ revenue) solutions.
+Reference: [Lakshmi Narayana’s portfolio](https://laksh05.vercel.app/).
 
-## Core Visual Concept: "Deep Space Architecture"
-A sophisticated dark-mode theme that suggests depth, complexity, and precision.
-- **Palette**: Deep Charcoal (`#0F172A`), Electric Blue (`#3B82F6`), and subtle Emerald (`#10B981`) for "Success/Revenue" metrics.
-- **Typography**: `Inter` for UI, `JetBrains Mono` for code snippets/technical terms, and a high-end Serif (like `Playfair Display` or `Merriweather`) for section headings to add a "Senior/Editorial" touch.
+The redesign follows the reference’s centered editorial hero, violet horizon, compact floating navigation, wide globe card, portrait at the right, smaller technology and contact cards, project previews, and prominent contact footer. Hiren’s identity, résumé, professional experience, and projects supply the content.
 
-## Solving the "Unprofessional" Gaps
-1.  **No Default Avatar**:
-    - We will replace the "Circle LinkedIn Photo" with a **Digital Identity Section**.
-    - If you are comfortable, we place a high-quality cutout of you on the right (hero style).
-    - If not, we use a **Generated Abstract Monogram** or a 3D Low-Poly character representing "The Architect".
-    - *Immediate Action*: I will generate a concept "Digital Identity" background.
+## Scope
 
-2.  **No "No-Image" Cards**:
-    - We will banish text-only cards.
-    - **Solution**: Every project without a screenshot gets a **Generated Abstract Cover** based on its tech stack.
-    - Example: A "Backend API" project gets a cool 3D visualization of server nodes, not a gray box.
-    - I can auto-generate these for all your existing projects.
+- Home, About, and Work share typography, navigation, contact, search, and dark/light themes.
+- Sanity supplies the public profile, email, social links, and résumé. A cached loader and public fallback keep navigation usable if the CMS is unavailable.
+- Selected work links to public destinations: ARA Calls, LLM Speedtest MCP, and agent-tally. Private repositories are not presented as public source links.
+- Existing project-detail, studio, and app privacy routes are retained.
+- No fabricated statistics, testimonials, client logos, blog posts, guestbook entries, or booking calendar.
 
-## Proposed Structure
-1.  **The Hook (Hero)**: "Engineering $1M+ Revenue Streams through Cloud Solutions."
-    - Background: Animated subtle particles or a 3D mesh (using `three.js` or a video loop).
-    - CTA: "View Architecture" (not just "View Projects").
-2.  **The Proof (Metrics Bar)**:
-    - 20+ Integrations | $1M+ Revenue Generated | 40% Latency Reduction.
-    - Designed like a stock ticker or cloud dashboard status bar.
-3.  **Featured Case Studies (Not just "Projects")**:
-    - "VL OMNI Connector": Show a diagram of the AWS/DynamoDB architecture (I can generate a schematic view).
-    - Focus on the *Problem* and *Solution*, not just "I used React".
-4.  **The Stack (Interactive)**:
-    - A periodic table of your skills, but grouped by "Infrastructure", "Backend", "Frontend".
+## Responsive behavior
 
-## Implementation Plan
-1.  **Refactor `globals.css`**: Implement the new "Deep Space" variables.
-2.  **Generate Assets**: Create unique covers for `Summize`, `ChatGPT Template`, etc.
-3.  **Build Components**:
-    - `HeroSection.tsx`: New layout.
-    - `ArchitectureCard.tsx`: A rich card component for projects.
-    - `MetricsBar.tsx`: To highlight the numbers.
-4.  **Deploy**: Update the main page.
+Desktop follows the reference’s three-column bento composition. On phones, the globe and portrait receive full-width rows, followed by smaller technology and contact cards. This keeps the portrait text legible and separate from the face.
 
-## Immediate Next Steps
-I can start by:
-1.  Generating a set of premium assets for your project cards.
-2.  Reskinning the application to the new "Dark Premium" theme.
+The globe uses COBE’s real map data and a city-level Hamilton marker. Rotation stops for reduced-motion preferences; the renderer is torn down outside the viewport, and the decorative canvas does not intercept scrolling. CSS motion also respects reduced motion.
+
+Contact and search use native modal dialogs with keyboard focus management, Escape dismissal, and backdrop-only click dismissal. Email copying has a visible confirmation and a mailto fallback. Theme preference is stored locally.
+
+## Assets
+
+- Hiren’s portrait: existing public Sanity profile image, downloaded for a stable local fallback.
+- ARA Calls preview: actual public homepage captured during implementation.
+- LLM Speedtest artwork: existing repository asset, presented as concept artwork rather than a product screenshot.
+- Globe fallback: [Earth photograph from Unsplash](https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4).
+
+## Verification
+
+Run the production build and a separate `tsc --noEmit` check (the repository’s existing Next configuration skips its internal type check). Review desktop and phone layouts in the browser, including Home/About/Work navigation, image loading, contact, copy feedback, search filtering, theme switching, and reduced motion. Independent subagent review compares saved reference and implementation screenshots; resolved findings include desktop bento spans, mobile portrait width, hero rhythm, dialog dismissal, and small-screen type.
