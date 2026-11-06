@@ -1,0 +1,104 @@
+import { FaGithub as Github } from "react-icons/fa";
+import Image from "next/image";
+import { ArrowUpRight, Terminal } from "lucide-react";
+import { selectedWork } from "@/data/selected-work";
+export default function WorkCollection() {
+  return (
+    <div className="work-list">
+      {selectedWork.map((project, i) => (
+        <article className="work-card" key={project.name}>
+          <a
+            className={`work-preview preview-${i}`}
+            href={project.href}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Explore ${project.name}`}
+          >
+            {project.name === "LLM Speedtest" ? (
+              <>
+                <Image
+                  src={project.image}
+                  alt={project.alt}
+                  fill
+                  sizes="(max-width: 800px) 90vw, 550px"
+                  className="concept-art"
+                />
+                <span className="concept-caption">LLM SPEEDTEST / MCP</span>
+              </>
+            ) : project.image ? (
+              <div className="browser-preview">
+                <div className="browser-chrome">
+                  <i />
+                  <i />
+                  <i />
+                  <span>{new URL(project.href).hostname}</span>
+                </div>
+                <div className="preview-image">
+                  <Image
+                    src={project.image}
+                    alt={project.alt}
+                    fill
+                    sizes="(max-width: 800px) 90vw, 550px"
+                    className="object-contain object-top"
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className="code-window">
+                <div className="terminal-heading">
+                  <Terminal size={16} />
+                  <span>agent-tally</span>
+                  <span className="terminal-label">OPEN SOURCE</span>
+                </div>
+                <div className="terminal-body">
+                  <p>
+                    <span className="terminal-prompt">~</span> pip install
+                    agent-tally
+                  </p>
+                  <p className="terminal-muted">Know what your agents cost.</p>
+                  <p className="terminal-command">$ agent-tally --help</p>
+                  <p>
+                    Track usage. Surface gaps.
+                    <br />
+                    Understand the bill.
+                  </p>
+                  <span className="terminal-cursor" />
+                </div>
+              </div>
+            )}
+            <span className="preview-open">
+              <ArrowUpRight size={18} />
+            </span>
+          </a>
+          <div className="work-description">
+            <span className="eyebrow">
+              <span className="work-number">0{i + 1}</span> {project.category}
+            </span>
+            <h3>
+              <a href={project.href} target="_blank" rel="noreferrer">
+                {project.name}
+                <ArrowUpRight size={24} />
+              </a>
+            </h3>
+            <p>{project.description}</p>
+            <div className="work-tags">
+              {project.tags.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+            <a
+              className="text-link"
+              href={project.source || project.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {project.source ? <Github size={15} /> : null}{" "}
+              {project.source ? "Explore the code" : "Visit the website"}{" "}
+              <ArrowUpRight size={13} />
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+}

@@ -1,39 +1,50 @@
-// app/layout.tsx
-
 import "../globals.css";
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Alata, EB_Garamond } from "next/font/google";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import BackToTop from "./components/BackToTop";
+import { loadProfile } from "@/lib/profile";
 
-const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
-
+const alata = Alata({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-alata",
+});
+const garamond = EB_Garamond({
+  subsets: ["latin"],
+  variable: "--font-editorial",
+});
 export const metadata: Metadata = {
-  metadataBase: new URL("https://portfolio-with-sanity-nextjs.vercel.app"),
-  title: "Hiren Thakore - AI Product Builder and Software Engineer",
-  description: "Senior software engineer building AI products, developer tools, cloud integrations, and trust QA systems for AI-built websites.",
+  metadataBase: new URL("https://hirenthakore.com"),
+  title: {
+    default: "Hiren Thakore — Software Engineer & AI Product Builder",
+    template: "%s | Hiren Thakore",
+  },
+  description:
+    "Software engineer building useful AI products, developer tools, and reliable cloud systems. Explore my work, engineering background, and current projects.",
   openGraph: {
-    images: "https://media.licdn.com/dms/image/v2/D5603AQH5XulB08-9tw/profile-displayphoto-shrink_800_800/0/1688578156925",
+    title: "Hiren Thakore — From concept to code",
+    description: "Software engineer. AI product builder. Always curious.",
+    images: [{ url: "/images/hiren-portrait.jpg", alt: "Hiren Thakore" }],
   },
 };
-
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const profile = await loadProfile();
   return (
-    <html lang="en">
-      <head>
-        <link 
-          rel="stylesheet" 
-          href="https://unpkg.com/bluesky-comments@0.3.0/dist/bluesky-comments.css" 
-        />
-      </head>
-      <body className={`${outfit.variable} ${outfit.className} bg-[#08090a] text-zinc-100`}>
-        <Navbar />
-        <div className="main-wrapper">
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${alata.variable} ${garamond.variable}`}>
+        <a className="skip-link" href="#main-content">
+          Skip to content
+        </a>
+        <Navbar profile={profile} />
+        <div id="main-content" className="main-wrapper">
           {children}
         </div>
-        <BackToTop />
-        <Footer />
+        <Footer profile={profile} />
       </body>
     </html>
   );
