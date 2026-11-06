@@ -1,6 +1,6 @@
 import { FaGithub as Github } from "react-icons/fa";
 import Image from "next/image";
-import { ArrowUpRight, CircleCheck } from "lucide-react";
+import { ArrowUpRight, CircleCheck, Terminal } from "lucide-react";
 import { selectedWork } from "@/data/selected-work";
 import TechIcon from "./TechIcon";
 export default function WorkCollection() {
@@ -15,17 +15,41 @@ export default function WorkCollection() {
             rel="noreferrer"
             aria-label={`Explore ${project.name}`}
           >
-            <Image
-              src={project.image}
-              alt={project.alt}
-              fill
-              sizes="(max-width:800px) 92vw, 620px"
-              className={
-                project.kind === "screen"
-                  ? "project-screen-image"
-                  : "project-cover-image"
-              }
-            />
+            {project.kind === "source" ? (
+              <div className="code-window">
+                <div className="terminal-heading">
+                  <Terminal size={16} />
+                  <span>agent-tally</span>
+                  <span className="terminal-label">OPEN SOURCE</span>
+                </div>
+                <div className="terminal-body">
+                  <p>
+                    <span className="terminal-prompt">~</span> pip install
+                    agent-tally
+                  </p>
+                  <p className="terminal-muted">Know what your agents cost.</p>
+                  <p className="terminal-command">$ agent-tally --help</p>
+                  <p>
+                    Track usage. Surface gaps.
+                    <br />
+                    Understand the bill.
+                  </p>
+                  <span className="terminal-cursor" />
+                </div>
+              </div>
+            ) : (
+              <Image
+                src={project.image}
+                alt={project.alt}
+                fill
+                sizes="(max-width:800px) 92vw, 620px"
+                className={
+                  project.kind === "screen"
+                    ? "project-screen-image"
+                    : "project-cover-image"
+                }
+              />
+            )}
             {project.kind === "artwork" && (
               <div className="cover-caption">
                 <span>{project.category}</span>

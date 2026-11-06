@@ -3352,6 +3352,21 @@ html[data-theme="light"] .portrait-shade {
 .work-preview:hover {
   border-color: var(--violet);
 }
+.work-preview.project-source {
+  width: 100%;
+  min-width: 0;
+  padding: 30px;
+  min-height: 270px;
+  background: radial-gradient(ellipse at top, #242238, #14121d);
+}
+.project-source .code-window {
+  min-height: 220px;
+}
+@media (max-width: 720px) {
+  .work-preview.project-source {
+    padding: 18px;
+  }
+}
 .project-screen-image {
   object-fit: contain;
   object-position: center;

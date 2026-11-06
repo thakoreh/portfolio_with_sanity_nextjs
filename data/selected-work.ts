@@ -40,10 +40,10 @@ export const selectedWork = [
       "A local companion for understanding what AI coding agents cost. Wrap a CLI session, track detected usage and local cost estimates, and make missing usage or unknown model pricing visible rather than treating it as proof of a free run.",
     href: "https://github.com/thakoreh/agent-tally",
     source: "https://github.com/thakoreh/agent-tally",
-    image: "/images/work-agent-tally-v2.png",
-    alt: "Conceptual project artwork: three usage streams feeding a precise glass ledger",
+    image: "",
+    alt: "",
     tags: ["Python", "CLI", "AI agents"],
-    kind: "artwork",
+    kind: "source",
     features: [
       "Wrap agent CLIs and track detected usage as they run.",
       "Review local cost estimates and configure budget controls.",
